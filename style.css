@@ -1,0 +1,522 @@
+body {
+ background-image: url("bg.png");
+ background-size: cover;
+ background-repeat:no-repeat;
+ background-origin: content-box;
+ background-color:#EAEAEA;
+ background-attachment:fixed;
+}
+
+option{
+	height:35px;
+}
+
+#BG{
+	height:100%;
+	width:100%;
+	background-image: src("img/bg.png");
+	background-attachment:fixed;
+}
+
+
+#Main{
+	text-align:center;
+	background-color:#EAEAEA;
+	min-width:400px;
+	max-width:700px;
+	/* min-height:850px; */
+	/* max-height:850px; */
+	margin:auto;
+	padding:auto;
+	margin-top:150px;
+	margin-bottom:150px;
+	border-radius: 25px;
+	border-style:solid;
+}
+
+#Box{
+	text-align:center;
+	background-color:#F9F9F9;
+	min-width:250px;
+	max-width:650px;
+	/* height:650px; */
+	margin:auto;
+	padding:auto;
+	float:center;
+
+}
+
+#Order{
+	text-align:center;
+	background-color:#000;
+	min-width:250px;
+	max-width:650px;
+	height:1650px;
+	margin:auto;
+	padding:auto;
+	float:center;
+	display:none;
+	background-color:#EAEAEA;
+}
+
+#enter2{
+	cursor: pointer;
+	background-color: #1ab26b; 
+    color: #FFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+	color: #F9F9F9;	
+	font-family: 'Roboto Condensed', sans-serif;
+	text-decoration: none;
+	text-transform:uppercase;
+	border-color:#1ab26b;
+	border-style:solid;
+	display:none;
+}
+
+h3{
+	color:#3D3D3D;
+	font-family: 'Roboto Condensed', sans-serif;
+	padding-top:50px;
+	font-size:16px;
+}
+
+#Resumen{
+	text-align:center;
+	min-width:250px;
+	max-width:650px;
+	/* margin:auto; */
+	/* padding:auto; */
+	float:center-left;
+	display:none;
+	background-color:#EAEAEA;
+}
+
+#Resumen h3{
+	color:#3D3D3D;
+	font-family: 'Roboto Condensed', sans-serif;
+	padding-top:50px;
+	font-size:26px;
+}
+
+#Resumen p{
+	color:#3D3D3D;
+	font-family: 'Roboto Condensed', sans-serif;
+	padding-top:50px;
+	font-size:26px;
+}
+
+#confirmbtn{
+	cursor: pointer;
+	background-color: #1ab26b; 
+    color: #FFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+	color: #F9F9F9;	
+	font-family: 'Roboto Condensed', sans-serif;
+	text-decoration: none;
+	text-transform:uppercase;
+	border-color:#1ab26b;
+	border-style:solid;
+}
+
+#back{
+	cursor: pointer;
+	background-color: #f07f7d; 
+    color: #FFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+	color: #F9F9F9;	
+	font-family: 'Roboto Condensed', sans-serif;
+	text-decoration: none;
+	text-transform:uppercase;
+	border-color:#f07f7d;
+	border-style:solid;
+}
+
+#Pedido p{
+	color:#3D3D3D;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+#Menutxt{
+	color:#3D3D3D;
+	font-family: 'Roboto Condensed', sans-serif;
+	padding-top:50px;
+	font-size:36px;	
+}
+
+#Pedido{
+	text-align:center;
+	min-width:250px;
+	max-width:650px;
+	height:1650px;
+	margin:auto;
+	padding:auto;
+	float:center;
+	background-color:#EAEAEA;
+}
+
+#ComidaTxt{
+	color:#3D3D3D;
+	font-family: 'Roboto Condensed', sans-serif;
+	padding-top:50px;
+	font-size:46px;
+}
+
+#Pedido img{
+	/* margin:auto; */
+	/* padding:auto; */
+	width:150px;
+	height:150px;
+	background-image: src("img/algo.png");
+	background-color:#3D3D3D;
+	display:block;
+	padding:25px 25px;
+	border-radius: 25px;
+	border-style:solid;
+	float:left;
+	margin-left:40px;
+}
+
+#Pedido input{
+	margin:auto;
+	padding:auto;
+	width:25px;
+	height:25px;
+	margin-top:15px;
+}
+
+#Pedido select{
+	margin:auto;
+	padding:auto;
+	height:35px;
+	display:none;
+	background-color:#3D3D3D;
+	border-radius: 25px;
+	border-style:solid;
+	font-family: 'Roboto Condensed', sans-serif;
+	color:#EAEAEA;
+	text-align:center;
+}
+
+#cantidad1{
+	display:none;
+	width:50px;
+	height:50px;
+}
+
+#cantidad2{
+	display:none;
+	width:50px;
+	height:50px;
+}
+
+#cantidad3{
+	display:none;
+	width:50px;
+	height:50px;
+}
+
+#buttonfood{
+	background-color: #1ab26b; 
+    color: #FFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+	color: #3D3D3D;	
+	font-family: 'Roboto Condensed', sans-serif;
+	text-decoration: none;
+	text-transform:uppercase;
+	border-color:#3D3D3D;
+	border-style:solid;
+}
+
+#framework{
+	background-color: #3D3D3D; 
+    color: #FFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+	color: #F9F9F9;	
+	font-family: 'Roboto Condensed', sans-serif;
+	text-decoration: none;
+	text-transform:uppercase;
+	border-color:#3D3D3D;
+	border-style:solid;
+	width:400px;
+}
+
+h2{
+	color:#3D3D3D;
+	font-family: 'Roboto Condensed', sans-serif;
+	padding-top:50px;
+	font-size:46px;
+}
+
+#btn{
+    background-color: #1ab26b; 
+    color: #FFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+	color: #F9F9F9;	
+	font-family: 'Roboto Condensed', sans-serif;
+	text-decoration: none;
+	text-transform:uppercase;
+	border-color:#1ab26b;
+	border-style:solid;
+	
+}
+
+#btn:hover{
+    filter: brightness(1.05);
+	cursor: pointer;
+}
+
+#Box button{
+    background-color: #1ab26b; 
+    color: #FFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+	color: #F9F9F9;	
+	font-family: 'Roboto Condensed', sans-serif;
+	text-decoration: none;
+	text-transform:uppercase;
+	border-color:#1ab26b;
+	border-style:solid;
+}
+
+#Box button:hover{
+    filter: brightness(1.05);
+}
+
+	/* Header */
+
+header{
+    width: 100vw;
+    height: 100px;
+    /* border-bottom: solid 1px rgba(16, 16, 16, 0.1); */
+	background-color:#3D3D3D;
+	position:fixed;
+	margin-top:-150px;
+	margin-left:-10px;
+}
+
+header .inner{
+    min-width: 600px;
+	max-width: 1300px;
+    height: 100%;
+    display: block;
+    margin: 0 auto;
+}
+
+header .logo{
+    display: table;
+    height: 100%;
+    float: left;
+}
+
+header .logo div{
+    height: 100%;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+header .logo img{
+    height: 50px;
+	border-top-style:solid;
+	border-bottom-style:solid;
+	border-left-style:solid;
+	border-right-style:solid;
+	border-radius: 55px;
+	margin-top:10px;
+	display:initial;
+}
+
+header nav{
+    float: right;
+    height: 100%;
+}
+
+header nav li{
+    display: table;
+    height: 100%;
+    float: left;
+    margin-right: 30px;
+}
+
+header nav li:last-of-type{
+    margin-right: 0;
+}
+
+header nav span {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+header nav a{
+    color: #F9F9F9;
+	font-family: 'Roboto Condensed', sans-serif;
+	text-decoration: none;
+	text-transform:uppercase;
+}
+
+header h1{
+    color: #F9F9F9;
+	float: right;
+	font-family: 'Roboto Condensed', sans-serif;
+	text-decoration: none;
+	display: initial;
+    vertical-align: middle;
+	margin-left:10px;
+}
+
+header nav .button{
+    background-color: #1ab26b; 
+    color: #FFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+}
+
+header nav .button:hover{
+    filter: brightness(1.05);
+}
+
+
+
+	/* FORM */
+	
+input[type=text], input[type=tel] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=tel]:focus {
+  background-color: #ddd;
+  outline: none;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+.clearfix button {
+  cursor: pointer;
+  background-color: #1ab26b; 
+    color: #FFF;
+    padding: 10px 20px;
+    border-radius: 4px;
+	color: #F9F9F9;	
+	font-family: 'Roboto Condensed', sans-serif;
+	text-decoration: none;
+	text-transform:uppercase;
+	border-color:#1ab26b;
+	border-style:solid;
+}
+
+.clearfix button:hover {
+  filter: brightness(1.05);
+  
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: center;
+  padding: 25px;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+  color: #3D3D3D;	
+  font-family: 'Roboto Condensed', sans-serif;
+  display:initial;
+
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+    width: 100%;
+  }
+}
+
+
+
+/* intro */
+
+
+.overlay {
+	 
+     /* z-index: 1; */
+	 width:100%;
+	 height:100%;
+     background: #101010;
+	 outline-style:solid;
+	 outline-color: #101010;
+	 outline-width:20px;
+	 position:fixed;
+	 float:center;
+	 background-color: rgba(16, 16, 16, 0.9);
+}
+
+.overlay p {
+    /* font-size: 300px; */
+     font-weight: 800;
+}
+
+.screen {
+     color: #EAEAEA;
+     font-family: 'Roboto Condensed', sans-serif;
+     position: fixed;
+     top: 02%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+	 margin-bottom:20px;
+}
+
+.myBtn:hover {
+     color: #101010;
+     cursor: pointer;
+}
+
+.myBtn {
+     font-family: 'Roboto Condensed', sans-serif;
+     position: fixed;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+	 display: block;
+     padding: 24px 48px;
+     font-family: Poppins;
+     font-weight: 700;
+     font-size: 12px;
+     letter-spacing: 6px;
+     color: #fff;
+     border: 2px solid #fff;
+     text-transform: uppercase;
+     outline: none;
+     overflow: hidden;
+     background: none;
+     z-index: 1;
+     cursor: pointer;
+     transition: 0.8s ease-out;
+}

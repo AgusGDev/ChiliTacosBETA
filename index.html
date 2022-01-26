@@ -1,0 +1,565 @@
+<html>
+	<head>
+		<title>Chili Tacos</title>
+		<link rel="stylesheet" href="style.css">
+		<!-- Font -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">	
+		<!-- <script type="text/javascript" src="js/javascript.js"></script> -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+		<!-- intro -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
+		
+		<script type="text/javascript">
+		(function() {
+		emailjs.init("user_C1LVLxnjmvByvBbj3pWO9");
+		})();
+		</script>
+		
+		<script type="text/javascript">
+			document.body.scrollTop = 0; // For Safari
+			document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+			function sendEmail(){
+				var tempParams = {
+					from_name: localStorage.getItem("Name"),
+					message: localStorage.getItem("Message"),
+					food: localStorage.getItem("FoodShow"),
+					price: localStorage.getItem("TotalPrice"),
+				};
+				emailjs.send('service_y4323cp', 'template_kx1yemk', tempParams)
+				.then(function(res){
+					console.log("success", res.status);
+					alert('Pedido enviado con exito!');
+					refresh();
+				})
+			}
+			
+			function fade1(){
+				var x = document.getElementById('Pedido');
+				x.style.display = 'none';
+				var y = document.getElementById('Box');
+				y.style.display = 'block';
+				savefood();
+			}
+		
+			function fade(){
+				var a = document.getElementById("name").value;
+				var b = document.getElementById("phone").value;
+				if(a.length <= 2 || b.length <= 6) return alert('Por favor, completa los campos de texto para continuar.');
+				saveuser();
+				var x = document.getElementById('Box');
+				x.style.display = 'none';
+				var y = document.getElementById('Order');
+				y.style.display = 'initial';
+				var txt = document.getElementById('title');
+				txt.innerHTML = "Ordenar";
+				
+				document.body.scrollTop = 0; // For Safari
+				document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+			}
+			
+			function fade2(){
+				var x = document.getElementById('Order');
+				x.style.display = 'none';
+				var y = document.getElementById('Resumen');
+				y.style.display = 'initial';
+				var x = document.getElementById('Pedido');
+				x.style.display = 'none';
+				var y = document.getElementById('Resumen');
+				y.style.display = 'initial';
+				var txt = document.getElementById('title');
+				txt.innerHTML = "Confirma tu pedido";
+				document.body.scrollTop = 0; // For Safari
+				document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+				const sb = document.querySelector('#framework');
+				var delitxt = document.getElementById('showdeli');
+				document.getElementById("username").innerHTML = localStorage.getItem("Name");
+				document.getElementById("number").innerHTML = localStorage.getItem("Phone");
+				if(sb.selectedIndex === 1)
+				{
+					document.getElementById("direccion").innerHTML = localStorage.getItem("Address");
+					delitxt.style.display = 'initial';
+				}
+				document.getElementById("deliver").innerHTML = localStorage.getItem("Type");
+				document.getElementById("food").innerHTML = localStorage.getItem("FoodShow");
+				document.getElementById("price").innerHTML = localStorage.getItem("TotalPrice");			
+				MessageCreate(localStorage.getItem("Phone"), localStorage.getItem("Name"), localStorage.getItem("Address"), localStorage.getItem("Type"));
+			}
+			
+			function paso1(){
+				var x = document.getElementById("name").value;
+				if(x.length >= 2)
+				{
+					paso2();
+				}
+				else{
+					btn.style.display = 'none';
+				}
+			}
+			
+			function paso2(){
+				var x = document.getElementById("phone").value;
+				if(x.length >= 6)
+				{
+					let btn = document.getElementById('enter');
+					btn.style.display = 'initial';
+				}
+				else{
+					btn.style.display = 'none';
+				}
+			}
+			
+			
+			function paso3(){
+				var x = document.getElementById("address").value;
+				if(x.length >= 6)
+				{
+					let btn = document.getElementById('btn');
+					btn.style.display = 'initial';
+				}
+				else{
+					btn.style.display = 'none';
+				}
+			}
+			
+			function fade3(){
+				savefood();
+				var x = document.getElementById('Pedido');
+				x.style.display = 'none';
+				var y = document.getElementById('Resumen');
+				y.style.display = 'initial';
+				var txt = document.getElementById('title');
+				txt.innerHTML = "Confirma tu pedido";
+				document.body.scrollTop = 0; // For Safari
+				document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+				const sb = document.querySelector('#framework');
+				var delitxt = document.getElementById('showdeli');
+				document.getElementById("username").innerHTML = localStorage.getItem("Name");
+				document.getElementById("number").innerHTML = localStorage.getItem("Phone");
+				if(sb.selectedIndex === 1)
+				{
+					document.getElementById("direccion").innerHTML = localStorage.getItem("Address");
+					delitxt.style.display = 'initial';
+				}
+				document.getElementById("deliver").innerHTML = localStorage.getItem("Type");
+				document.getElementById("food").innerHTML = localStorage.getItem("FoodShow");
+				let price = localStorage.getItem("TotalPrice");
+				document.getElementById("price").innerHTML = `\$${price}`;			
+				MessageCreate(localStorage.getItem("Phone"), localStorage.getItem("Name"), localStorage.getItem("Address"), localStorage.getItem("Type"));
+			}
+			
+			
+			function saveuser(){
+			
+				var name = document.getElementById('name').value;
+				localStorage.setItem("Name", name);
+				
+				var phone = document.getElementById('phone').value;
+				localStorage.setItem("Phone", phone);
+			
+			}
+			
+			function savedomi(v){
+				localStorage.setItem("Address", v);
+			
+			}
+			
+			function savetype(val){
+				localStorage.setItem("Type", val);
+				
+			}
+			
+			function savefood(){
+				let txt1 = document.getElementById("cant1");
+				let txt2 = document.getElementById("cant2");
+				let txt3 = document.getElementById("cant3");
+				
+				var cant1 = document.getElementById("cantidad1").selectedIndex + 1;
+				var cant2 = document.getElementById("cantidad2").selectedIndex + 1;
+				var cant3 = document.getElementById("cantidad3").selectedIndex + 1;
+				
+				var type = localStorage.getItem("Type");
+				
+				var total = 0;
+				
+				if(txt1.style.display === "initial")
+				{
+					var foodonecant = cant1;
+					var part1 = `\| Tacos de pollo X${foodonecant} \|`;
+					var price1 = 350 * foodonecant;
+					total += price1;
+				}
+				else
+				{
+					var foodonecant = 'No';
+					var part1 = ' ';
+				}
+
+				if(txt2.style.display === "initial")
+				{
+					var foodtwocant = cant2;
+					var part2 = `\| Tacos de carne X${foodtwocant} \|`;
+					var price2 = 450 * foodtwocant;
+					total += price2;
+				}
+				else
+				{
+					var foodtwocant = 'No';
+					var part2 = ' ';
+				}
+				
+				if(txt3.style.display === "initial")
+				{
+					var foodthreecant = cant3;
+					var part3 = `\| Nachos con salsa X${foodthreecant} \|`;
+					var price3 = 150 * foodthreecant;
+					total += price3;
+				}
+				else
+				{
+					var foodthreecant = 'No';
+					var part3 = ' ';
+				}
+				
+				if(type === 'Si')
+				{
+					total += 100;
+				}
+				
+				localStorage.setItem("TotalPrice", total);
+				
+				var txtshow = `${part1}   ${part2}   ${part3}`;
+				localStorage.setItem("FoodShow", txtshow);
+				<!-- var txt = ` \t Tacos de carne - ${foodtwocant} \t Nachos con salsa - ${foodthreecant}`; -->
+				<!-- localStorage.setItem("Food", txt); -->
+			}
+			
+			
+			
+			<!-- intro -->
+
+			function fadeOut() {
+
+				 TweenMax.to(".myBtn", 1, {
+					  y: -100,
+					  opacity: 0
+				 });
+
+				 TweenMax.to(".screen", 2, {
+					  y: -400,
+					  opacity: 0,
+					  ease: Power2.easeInOut,
+					  delay: 2
+				 });
+
+				 TweenMax.from(".overlay", 2, {
+					  ease: Power2.easeInOut
+				 });
+
+				 TweenMax.to(".overlay", 2, {
+					  delay: 2.6,
+					  top: "-110%",
+					  ease: Expo.easeInOut
+				 });
+				 let all = document.getElementById('all');
+				 setTimeout(() => {  all.style.display = "initial"; }, 5000);
+				 
+     }
+        </script>
+	</head>
+	<body>
+	
+	<div class="overlay">
+        <p class="screen" style="font-size:12vw;">ChiliTacosRosario</p>
+			<div class="intro">
+            <button class="myBtn" onclick="fadeOut()">ENTRAR</button>
+        </div>
+    </div>
+		
+	<div id="all" style="display:none;">	
+		<header>
+			<div class="inner">
+				<div class="logo">
+					<div>
+						<img src="img/logo.png" alt="ChiliTacosRosario">
+						<h1>ChiliTacosRosario</h1>
+					</div>
+				</div>
+
+				<nav>
+					<!-- <li><span><a href="https://www.instagram.com/chilitacosrosario/" target="_blank">Instagram</a></span></li> -->
+					<li><span><a href="https://www.instagram.com/chilitacosrosario/" class="button" target="_blank">Instagram</a></span></li>
+				</nav>
+			</div>
+		</header>
+		<!--  DIVS    -->
+
+		
+
+
+		<div id="Main">
+			<p><h2 id="title"> ¡Bienvenido! </h2>
+			<div id="Box" style="display:none;">
+				<br>
+				<br>
+			  <div class="container">
+				<h1>Ingresar</h1>
+				<hr>
+				<label for="email"><b>Nombre</b></label>
+				<input id="name" type="text" placeholder="Nombre" name="Nombre" oninput="paso1()" required="required">
+				<label for="psw-repeat"><b>Número de teléfono</b></label>
+				<input id="phone" type="tel" placeholder="Número de teléfono" minlength="6" oninput="paso1()" name="psw-repeat" required="required">	
+				<label>
+					<input type="checkbox" name="remember" style="margin-bottom:15px"> Recuérdame
+				</label>
+				<br><br>				
+				<div class="clearfix">
+				  <button style="display:none;" onclick="fade()" type="sumbit" id="enter">Continuar</button>
+				</div>
+				<br><br>
+			  </div>
+			</div>
+			
+			
+			
+			<div id="Order">
+				<br><br><br><br>
+				<select id="framework" onchange="showdomi()" required="required" >
+				  <option value="">Elige una opción</option>
+				  <option value="Delivery">Delivery ($100)</option>
+				  <option value="Retiro">Retiro</option>
+				</select>
+				<br><br><br><br>
+				<input id="address" oninput="paso3()" type="text" style="display:none" placeholder="Ingresa tu domicilio" minlength="1" name="psw" required="required">
+				<br><br><br><br>
+				<button id="btn">Ver resumen</button>
+				<br><br><br><br>
+			</div>
+			<script>
+				const btn = document.querySelector('#btn');
+				const sb = document.querySelector('#framework');
+				const input = document.getElementById('address');
+				btn.onclick = (event) => {
+				event.preventDefault();
+				if(sb.selectedIndex === 0)
+				{
+					alert("Debes elegir una opción de recepción.");
+				}
+				if(sb.selectedIndex === 1)
+				{
+					<!-- Delivery -->
+					savetype('Si');
+					fade2();
+				}
+				if(sb.selectedIndex === 2)
+				{
+					<!-- Retiro -->
+					savetype('No');
+					fade2();
+				}
+				};
+			
+				function showdomi(){
+					if(sb.selectedIndex === 1)
+					{
+						input.style.display = 'initial';
+					}
+					else
+					{
+						input.style.display = 'none';
+					}
+					if(sb.selectedIndex === 2) 
+					{
+						<!-- retira -->
+						let btn = document.getElementById('btn');
+						btn.style.display = 'initial';
+					}
+					else
+					{
+						btn.style.display = 'none';
+					}
+				}
+				
+				
+				function MessageCreate(number, name, address, type){
+					if(type === 'No')
+					{
+						var data = ` Nombre: ${name} \| Delivery: ${type} \| Teléfono: ${number}`;
+					}
+					else{
+						var data = ` Nombre: ${name} \| Delivery: ${type} \| Teléfono: ${number} \| Domicilio: ${address}`;
+					}
+					localStorage.setItem('Message', data);
+				}
+				
+			</script>
+			
+			<div id="Pedido">
+			<p id="Menutxt">Menú</p><br><br>
+			<hr>
+				
+				<img id="Nachos1" src="img/Nachosconcarnitas.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Tacos de pollo ($350 c/u)</p>
+				<input type="checkbox" onclick="ShowC1()" name="Nachos1">
+				<br><br>
+				<p id="cant1" style="display:none;">Cantidad</p>
+				<select id="cantidad1" style="display:none;" required="required">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">4</option>
+				  <option value="5">5</option>
+				  <option value="6">6</option>
+				  <option value="7">7</option>
+				  <option value="8">8</option>
+				</select>
+				<hr>
+				<br><br><br><br>
+				<img id="algo" src="img/algo.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Tacos de carne ($450 c/u)</p>
+				<input type="checkbox" onclick="ShowC2()" name="Nachos2">
+				<br><br>
+				<p id="cant2" style="display:none;">Cantidad</p>
+				<select id="cantidad2" style="display:none;" required="required">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">4</option>
+				  <option value="5">5</option>
+				  <option value="6">6</option>
+				  <option value="7">7</option>
+				  <option value="8">8</option>
+				</select>
+				<hr>
+				<br><br><br><br>
+				<img id="algo2" src="img/algo2.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Nachos con salsa ($150 c/u)</p>
+				<input type="checkbox" onclick="ShowC3()" name="Nachos3">
+				<br><br>
+				<p id="cant3" style="display:none;">Cantidad</p>
+				<select id="cantidad3" style="display:none;" required="required">
+				  <option value="1">1</option>
+				  <option value="2">2</option>
+				  <option value="3">3</option>
+				  <option value="4">4</option>
+				  <option value="5">5</option>
+				  <option value="6">6</option>
+				  <option value="7">7</option>
+				  <option value="8">8</option>
+				</select>
+				<hr>
+				<button onclick="fade1()" id="enter2">Continuar</button>
+				<script> <!-- mostrar boton cantidad -->
+					var count = 0;
+					function ShowC1(){
+						let list = document.getElementById("cantidad1");
+						let button = document.getElementById("enter2");
+						
+						let txt = document.getElementById("cant1");
+						
+						if(list.style.display === 'none')
+						{
+							list.style.display = 'block';
+							button.style.display = 'initial';
+							txt.style.display = 'initial';
+							count++;
+						}
+						else
+						{
+							list.style.display = 'none';
+							count -= 1;
+							if(count === 0)
+							{
+								button.style.display = 'none';
+								txt.style.display = 'none';
+							}
+						}
+					}
+					
+					function ShowC2(){
+						let list = document.getElementById("cantidad2");
+						let button = document.getElementById("enter2");
+						
+						let txt = document.getElementById("cant2");
+						
+						if(list.style.display === 'none')
+						{
+							list.style.display = 'block';
+							button.style.display = 'initial';
+							txt.style.display = 'initial';
+							count++;
+						}
+						else
+						{
+							list.style.display = 'none';
+							count -= 1;
+							if(count === 0)
+							{
+								button.style.display = 'none';
+								txt.style.display = 'none';
+							}
+						}
+					}
+					
+					function ShowC3(){
+						let list = document.getElementById("cantidad3");
+						let button = document.getElementById("enter2");
+						
+						let txt = document.getElementById("cant3");
+						
+						if(list.style.display === 'none')
+						{
+							list.style.display = 'block';
+							button.style.display = 'initial';
+							txt.style.display = 'initial';
+							count++;
+						}
+						else
+						{
+							list.style.display = 'none';
+							count -= 1;
+							if(count === 0)
+							{
+								button.style.display = 'none';
+								txt.style.display = 'none';
+							}
+						}
+					}
+					
+					function refresh(){
+						location.reload();
+						document.body.scrollTop = 0; // For Safari
+						document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+					}
+					
+					function fade4(){
+						let btn = document.getElementById('confirmbtn');
+						btn.style.display = 'none';
+						sendEmail();
+					}
+					
+				</script>
+				<br><br><br><br>
+			</div>
+			
+			
+			<div id="Resumen">
+			<br><br><br><br>
+			<hr>
+			<br>	
+			<h3>Nombre: </h3><p id="username"></p>
+			<h3>Teléfono: </h3><p id="number"></p>
+			<h3 id="showdeli" style="display:none;">Domicilio: </h3><p id="direccion"></p>
+			<h3>Delivery: </h3><p id="deliver"></p>
+			<h3>Pedido: </h3><p id="food"></p>
+			<br>
+			<h3>Total: </h3><p id="price"></p>
+			<br><br>
+			<button onclick="fade4()" id="confirmbtn">Confirmar pedido</button>
+			<br><br>
+			<button onclick="refresh()" id="back">Volver</button>
+			</div>
+			<br><br><br><br>
+		</div>
+	</div>
+	
+	</body>
+</html>
