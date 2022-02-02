@@ -8,6 +8,10 @@
 		<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap" rel="stylesheet">	
 		<!-- <script type="text/javascript" src="js/javascript.js"></script> -->
 		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/polyfills.umd.js"></script>
+		
 		<!-- intro -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
 		
@@ -34,6 +38,53 @@
 					refresh();
 				})
 			}
+			
+			
+			<!-- WHATSAPP -->
+			
+			
+			function SendMSG(){
+			
+				let telefono = "543464637286";
+
+				let cliente = localStorage.getItem("Name");
+				let msg = localStorage.getItem("Message");
+			  let food = localStorage.getItem("FoodShow");
+			  let precio = localStorage.getItem("TotalPrice");
+			  
+			  let url = `https://api.whatsapp.com/send?phone=${telefono}&text=
+					*_NUEVO PEDIDO_*%0A
+					%0D%0A
+					*Información*:%0A
+					${msg}%0A
+					%0D%0A
+					*Pedido:*%0A
+					${food}%0A
+					%0D%0A
+					*Precio Total:*%0A
+					$${precio}%0A`;
+
+			  if (cliente === "" || msg === "" || food === "") {
+				return false;
+			  }
+				window.open(url);
+				
+							
+			
+			const { jsPDF } = require("jspdf"); // will automatically load the node version
+			
+			const doc = new jsPDF();
+			
+			
+			doc.text(msg, 10, 10);
+			doc.save("fac.pdf"); // will save the file in the current working directory	
+				
+			}
+
+			
+			<!-- FIN WHATSAPP -->
+			
+			
 			
 			function fade1(){
 				var x = document.getElementById('Pedido');
@@ -145,7 +196,7 @@
 				document.getElementById("deliver").innerHTML = localStorage.getItem("Type");
 				document.getElementById("food").innerHTML = localStorage.getItem("FoodShow");
 				let price = localStorage.getItem("TotalPrice");
-				document.getElementById("price").innerHTML = `\$${price}`;			
+				document.getElementById("price").innerHTML = "$ ${price}";			
 				MessageCreate(localStorage.getItem("Phone"), localStorage.getItem("Name"), localStorage.getItem("Address"), localStorage.getItem("Type"));
 			}
 			
@@ -222,7 +273,7 @@
 					var part3 = ' ';
 				}
 				
-				if(type === 'Si')
+				if(type === 'Delivery')
 				{
 					total += 100;
 				}
@@ -244,6 +295,13 @@
 				 TweenMax.to(".myBtn", 1, {
 					  y: -100,
 					  opacity: 0
+				 });
+				 
+				 TweenMax.to(".screen2", 2, {
+					  y: -400,
+					  opacity: 0,
+					  ease: Power2.easeInOut,
+					  delay: 1
 				 });
 
 				 TweenMax.to(".screen", 2, {
@@ -273,8 +331,9 @@
 	<div class="overlay">
         <p class="screen" style="font-size:12vw;">ChiliTacosRosario</p>
 			<div class="intro">
-            <button class="myBtn" onclick="fadeOut()">ENTRAR</button>
+            <button class="myBtn" onclick="fadeOut()" style="font-size:1vw;">PEDIR AHORA</button>
         </div>
+		<p class="screen2" style="font-size:3vw;">Cerrito 974, Rosario</p>
     </div>
 		
 	<div id="all" style="display:none;">	
@@ -286,12 +345,12 @@
 						<h1>ChiliTacosRosario</h1>
 					</div>
 				</div>
-
 				<nav>
 					<!-- <li><span><a href="https://www.instagram.com/chilitacosrosario/" target="_blank">Instagram</a></span></li> -->
 					<li><span><a href="https://www.instagram.com/chilitacosrosario/" class="button" target="_blank">Instagram</a></span></li>
 				</nav>
 			</div>
+			
 		</header>
 		<!--  DIVS    -->
 
@@ -310,9 +369,9 @@
 				<input id="name" type="text" placeholder="Nombre" name="Nombre" oninput="paso1()" required="required">
 				<label for="psw-repeat"><b>Número de teléfono</b></label>
 				<input id="phone" type="tel" placeholder="Número de teléfono" minlength="6" oninput="paso1()" name="psw-repeat" required="required">	
-				<label>
-					<input type="checkbox" name="remember" style="margin-bottom:15px"> Recuérdame
-				</label>
+				<!-- <label> -->
+					<!-- <input type="checkbox" name="remember" style="margin-bottom:15px"> Recuérdame -->
+				<!-- </label> -->
 				<br><br>				
 				<div class="clearfix">
 				  <button style="display:none;" onclick="fade()" type="sumbit" id="enter">Continuar</button>
@@ -323,7 +382,7 @@
 			
 			
 			
-			<div id="Order">
+			<div id="Order" style="display:none;">
 				<br><br><br><br>
 				<select id="framework" onchange="showdomi()" required="required" >
 				  <option value="">Elige una opción</option>
@@ -349,13 +408,13 @@
 				if(sb.selectedIndex === 1)
 				{
 					<!-- Delivery -->
-					savetype('Si');
+					savetype('Delivery');
 					fade2();
 				}
 				if(sb.selectedIndex === 2)
 				{
 					<!-- Retiro -->
-					savetype('No');
+					savetype('Retiro en local');
 					fade2();
 				}
 				};
@@ -383,12 +442,12 @@
 				
 				
 				function MessageCreate(number, name, address, type){
-					if(type === 'No')
+					if(type === 'Retiro en local')
 					{
-						var data = ` Nombre: ${name} \| Delivery: ${type} \| Teléfono: ${number}`;
+						var data = ` Nombre: ${name} \| ${type} \| Teléfono: ${number}`;
 					}
 					else{
-						var data = ` Nombre: ${name} \| Delivery: ${type} \| Teléfono: ${number} \| Domicilio: ${address}`;
+						var data = ` Nombre: ${name} \| ${type} \| Teléfono: ${number} \| Domicilio: ${address}`;
 					}
 					localStorage.setItem('Message', data);
 				}
@@ -396,56 +455,66 @@
 			</script>
 			
 			<div id="Pedido">
-			<p id="Menutxt">Menú</p><br><br>
+			<h3 id="Menutxt">Menú</h3>
+			<!-- <br><br> -->
 			<hr>
+				<div id="foodall">
+				<div id="food1">
+					<img id="Nachos1" src="img/Nachosconcarnitas.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Tacos de pollo ($350 c/u)</p>
+					<input type="checkbox" onclick="ShowC1()" name="Nachos1">
+					<br><br>
+					<p id="cant1" style="display:none;">Cantidad</p>
+					<select id="cantidad1" style="display:none;" required="required">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					</select>
+					<!-- <hr> -->
+					</div>
+				<!-- <br><br><br><br> -->
 				
-				<img id="Nachos1" src="img/Nachosconcarnitas.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Tacos de pollo ($350 c/u)</p>
-				<input type="checkbox" onclick="ShowC1()" name="Nachos1">
-				<br><br>
-				<p id="cant1" style="display:none;">Cantidad</p>
-				<select id="cantidad1" style="display:none;" required="required">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">4</option>
-				  <option value="5">5</option>
-				  <option value="6">6</option>
-				  <option value="7">7</option>
-				  <option value="8">8</option>
-				</select>
-				<hr>
-				<br><br><br><br>
-				<img id="algo" src="img/algo.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Tacos de carne ($450 c/u)</p>
-				<input type="checkbox" onclick="ShowC2()" name="Nachos2">
-				<br><br>
-				<p id="cant2" style="display:none;">Cantidad</p>
-				<select id="cantidad2" style="display:none;" required="required">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">4</option>
-				  <option value="5">5</option>
-				  <option value="6">6</option>
-				  <option value="7">7</option>
-				  <option value="8">8</option>
-				</select>
-				<hr>
-				<br><br><br><br>
-				<img id="algo2" src="img/algo2.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Nachos con salsa ($150 c/u)</p>
-				<input type="checkbox" onclick="ShowC3()" name="Nachos3">
-				<br><br>
-				<p id="cant3" style="display:none;">Cantidad</p>
-				<select id="cantidad3" style="display:none;" required="required">
-				  <option value="1">1</option>
-				  <option value="2">2</option>
-				  <option value="3">3</option>
-				  <option value="4">4</option>
-				  <option value="5">5</option>
-				  <option value="6">6</option>
-				  <option value="7">7</option>
-				  <option value="8">8</option>
-				</select>
-				<hr>
+				<div id="food2">
+					<img id="algo" src="img/algo.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Tacos de carne ($450 c/u)</p>
+					<input type="checkbox" onclick="ShowC2()" name="Nachos2">
+					<br><br>
+					<p id="cant2" style="display:none;">Cantidad</p>
+					<select id="cantidad2" style="display:none;" required="required">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					</select>
+					<!-- <hr> -->
+					</div>
+				<!-- <br><br><br><br> -->
+				
+				<div id="food3">
+					<img id="algo2" src="img/algo2.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Nachos con salsa ($150 c/u)</p>
+					<input type="checkbox" onclick="ShowC3()" name="Nachos3">
+					<br><br>
+					<p id="cant3" style="display:none;">Cantidad</p>
+					<select id="cantidad3" style="display:none;" required="required">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					</select>
+					<!-- <hr> -->
+					</div>
+					</div>
 				<button onclick="fade1()" id="enter2">Continuar</button>
 				<script> <!-- mostrar boton cantidad -->
 					var count = 0;
@@ -533,7 +602,13 @@
 					function fade4(){
 						let btn = document.getElementById('confirmbtn');
 						btn.style.display = 'none';
-						sendEmail();
+						SendMSG();
+					}
+					
+					
+					function ShowF1(){
+						let div = document.getElementById('food1');
+						div.style.display = 'initial';
 					}
 					
 				</script>
@@ -541,14 +616,14 @@
 			</div>
 			
 			
-			<div id="Resumen">
+			<div id="Resumen" style="display:none;">
 			<br><br><br><br>
 			<hr>
 			<br>	
 			<h3>Nombre: </h3><p id="username"></p>
 			<h3>Teléfono: </h3><p id="number"></p>
 			<h3 id="showdeli" style="display:none;">Domicilio: </h3><p id="direccion"></p>
-			<h3>Delivery: </h3><p id="deliver"></p>
+			<h3>Tipo de encargo: </h3><p id="deliver"></p>
 			<h3>Pedido: </h3><p id="food"></p>
 			<br>
 			<h3>Total: </h3><p id="price"></p>
