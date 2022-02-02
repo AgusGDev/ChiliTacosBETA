@@ -994,7 +994,7 @@ h2{
 
 header{
     width: 100vw;
-    height: 100px;
+    height: 136px;
     /* border-bottom: solid 1px rgba(16, 16, 16, 0.1); */
 	background-color:#3D3D3D;
 	position:fixed;
@@ -1067,6 +1067,7 @@ header nav a{
 	font-family: 'Roboto Condensed', sans-serif;
 	text-decoration: none;
 	text-transform:uppercase;
+	font-size:26px;
 }
 
 header h1{
