@@ -877,11 +877,12 @@ h3{
 #Pedido input{
 	margin:auto;
 	padding:auto;
-	width:6vw;
-	height:6vw;
+	width:8vw;
+	height:8vw;
 	padding:10px;
 	/* margin-top:15px; */
 	grid-column: 2 / 3;
+	background-color:#3D3D3D;
 }
 
 #Pedido select{
@@ -1100,7 +1101,7 @@ header nav .button:hover{
      padding: 24px 48px;
      font-family: Poppins;
      font-weight: 700;
-     font-size: 2vw;
+     font-size: 4vw;
      letter-spacing: 6px;
      color: #fff;
      border: 2px solid #fff;
@@ -1178,7 +1179,7 @@ hr {
   color: #3D3D3D;	
   font-family: 'Roboto Condensed', sans-serif;
   display:initial;
-  font-size:5vw;
+  font-size:8vw;
 }
 
 /* Clear floats */
