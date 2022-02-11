@@ -291,12 +291,12 @@ h3{
 
 #foodall{
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-    column-gap: 10vw;
+	/*grid-template-columns: repeat(3, 1fr);*/
+    	column-gap: 11vw;
 	grid-auto-rows: minmax(100px, auto);
 	padding:2vw 2vw;
 	float:center;
-	/* grid-template-columns: 21vw 21vw; */
+	grid-template-columns: 10vw 10vw; 
 	row-gap: 2vw;
 }
 
