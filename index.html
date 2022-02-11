@@ -12,6 +12,8 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/polyfills.umd.js"></script>
 		
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+		
 		<!-- intro -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
 		
@@ -51,7 +53,7 @@
 				let msg = localStorage.getItem("Message");
 			  let food = localStorage.getItem("FoodShow");
 			  let precio = localStorage.getItem("TotalPrice");
-			  
+			  <!-- 5493416425052 -->
 			  let url = `https://api.whatsapp.com/send?phone=${telefono}&text=
 					*_NUEVO PEDIDO_*%0A
 					%0D%0A
@@ -195,8 +197,8 @@
 				}
 				document.getElementById("deliver").innerHTML = localStorage.getItem("Type");
 				document.getElementById("food").innerHTML = localStorage.getItem("FoodShow");
-				let price = localStorage.getItem("TotalPrice");
-				document.getElementById("price").innerHTML = "$ ${price}";			
+				let price = localStorage.getItem("TotalPriceTxt");
+				document.getElementById("price").innerHTML = price;			
 				MessageCreate(localStorage.getItem("Phone"), localStorage.getItem("Name"), localStorage.getItem("Address"), localStorage.getItem("Type"));
 			}
 			
@@ -225,10 +227,22 @@
 				let txt1 = document.getElementById("cant1");
 				let txt2 = document.getElementById("cant2");
 				let txt3 = document.getElementById("cant3");
+				let txt4 = document.getElementById("cant4");
+				let txt5 = document.getElementById("cant5");
+				let txt6 = document.getElementById("cant6");
+				let txt7 = document.getElementById("cant7");
+				let txt8 = document.getElementById("cant8");
+				let txt9 = document.getElementById("cant9");
 				
 				var cant1 = document.getElementById("cantidad1").selectedIndex + 1;
 				var cant2 = document.getElementById("cantidad2").selectedIndex + 1;
 				var cant3 = document.getElementById("cantidad3").selectedIndex + 1;
+				var cant4 = document.getElementById("cantidad4").selectedIndex + 1;
+				var cant5 = document.getElementById("cantidad5").selectedIndex + 1;
+				var cant6 = document.getElementById("cantidad6").selectedIndex + 1;
+				var cant7 = document.getElementById("cantidad7").selectedIndex + 1;
+				var cant8 = document.getElementById("cantidad8").selectedIndex + 1;
+				var cant9 = document.getElementById("cantidad9").selectedIndex + 1;
 				
 				var type = localStorage.getItem("Type");
 				
@@ -237,8 +251,8 @@
 				if(txt1.style.display === "initial")
 				{
 					var foodonecant = cant1;
-					var part1 = `\| Tacos de pollo X${foodonecant} \|`;
-					var price1 = 350 * foodonecant;
+					var part1 = `\| A- Menu de Tacos para 1 X${foodonecant} \|`;
+					var price1 = 700 * foodonecant;
 					total += price1;
 				}
 				else
@@ -250,8 +264,8 @@
 				if(txt2.style.display === "initial")
 				{
 					var foodtwocant = cant2;
-					var part2 = `\| Tacos de carne X${foodtwocant} \|`;
-					var price2 = 450 * foodtwocant;
+					var part2 = `\| A- Menu de Tacos para 2 X${foodtwocant} \|`;
+					var price2 = 1250 * foodtwocant;
 					total += price2;
 				}
 				else
@@ -263,8 +277,8 @@
 				if(txt3.style.display === "initial")
 				{
 					var foodthreecant = cant3;
-					var part3 = `\| Nachos con salsa X${foodthreecant} \|`;
-					var price3 = 150 * foodthreecant;
+					var part3 = `\| A- Menu de Tacos para 3 X${foodthreecant} \|`;
+					var price3 = 1870 * foodthreecant;
 					total += price3;
 				}
 				else
@@ -273,14 +287,95 @@
 					var part3 = ' ';
 				}
 				
+				
+				
+				if(txt4.style.display === "initial")
+				{
+					var food4cant = cant4;
+					var part4 = `\| A- Menu de Tacos para 4 X${food4cant} \|`;
+					var price4 = 2500 * food4cant;
+					total += price1;
+				}
+				else
+				{
+					var food4cant = 'No';
+					var part4 = ' ';
+				}
+				
+				if(txt5.style.display === "initial")
+				{
+					var food5cant = cant6;
+					var part5 = `\| B- Menu Nachos X${food5cant} \|`;
+					var price5 = 430 * food5cant;
+					total += price5;
+				}
+				else
+				{
+					var food5cant = 'No';
+					var part5 = ' ';
+				}
+				
+				if(txt6.style.display === "initial")
+				{
+					var food6cant = cant6;
+					var part6 = `\| B- Menu Nachos con Carnitas X${food6cant} \|`;
+					var price6 = 550 * food6cant;
+					total += price6;
+				}
+				else
+				{
+					var food6cant = 'No';
+					var part6 = ' ';
+				}
+				
+				if(txt7.style.display === "initial")
+				{
+					var food7cant = cant7;
+					var part7 = `\| C- Menú de Tacos Para 2 Vegetariano o Vegano X${food7cant} \|`;
+					var price7 = 1250 * food7cant;
+					total += price7;
+				}
+				else
+				{
+					var food7cant = 'No';
+					var part7 = ' ';
+				}
+				
+				if(txt8.style.display === "initial")
+				{
+					var food8cant = cant8;
+					var part8 = `\| G- Bandeja de Carne y Pollo 500g X${food8cant} \|`;
+					var price8 = 600 * food8cant;
+					total += price8;
+				}
+				else
+				{
+					var food8cant = 'No';
+					var part8 = ' ';
+				}
+				if(txt9.style.display === "initial")
+				{
+					var food9cant = cant9;
+					var part9 = `\| G- Bandeja de Vegetales 420g X${food9cant} \|`;
+					var price9 = 450 * food9cant;
+					total += price9;
+				}
+				else
+				{
+					var food9cant = 'No';
+					var part9 = ' ';
+				}
+				
 				if(type === 'Delivery')
 				{
 					total += 100;
 				}
 				
+				var totaltxt = `$ ${total}`;
+				localStorage.setItem("TotalPriceTxt", totaltxt);
 				localStorage.setItem("TotalPrice", total);
 				
-				var txtshow = `${part1}   ${part2}   ${part3}`;
+				var txtshow = `${part1}   ${part2}   ${part3}	${part4}   ${part5}   ${part6}	${part7}   ${part8}   ${part9}`;
 				localStorage.setItem("FoodShow", txtshow);
 				<!-- var txt = ` \t Tacos de carne - ${foodtwocant} \t Nachos con salsa - ${foodthreecant}`; -->
 				<!-- localStorage.setItem("Food", txt); -->
@@ -322,7 +417,8 @@
 				 });
 				 let all = document.getElementById('all');
 				 setTimeout(() => {  all.style.display = "initial"; }, 5000);
-				 
+				 var div = document.querySelector('GFG_DIV');
+				 div.parentNode.removeChild(div);
      }
         </script>
 	</head>
@@ -338,19 +434,23 @@
 		
 	<div id="all" style="display:none;">	
 		<header>
-			<div class="inner">
-				<div class="logo">
-					<div>
-						<img src="img/logo.png" alt="ChiliTacosRosario">
-						<h1>ChiliTacosRosario</h1>
-					</div>
+			<!-- <div class="inner"> -->
+				
+			<!-- </div> -->
+			<div id="header">
+				<div id="header1">
+					<img src="img/logo.png" alt="ChiliTacosRosario">
 				</div>
-				<nav>
-					<!-- <li><span><a href="https://www.instagram.com/chilitacosrosario/" target="_blank">Instagram</a></span></li> -->
-					<li><span><a href="https://www.instagram.com/chilitacosrosario/" class="button" target="_blank">Instagram</a></span></li>
-				</nav>
+				<div id="header2">
+					<h1>ChiliTacosRosario</h1>
+				</div>
+				<div id="header3">	
+					<nav>
+						<!-- <li><span><a href="https://www.instagram.com/chilitacosrosario/" target="_blank">Instagram</a></span></li> -->
+						<li><span><a href="https://www.instagram.com/chilitacosrosario/" class="button" target="_blank"><img src="img/inglogo.png"></a></span></li>
+					</nav>
+				</div>
 			</div>
-			
 		</header>
 		<!--  DIVS    -->
 
@@ -444,10 +544,10 @@
 				function MessageCreate(number, name, address, type){
 					if(type === 'Retiro en local')
 					{
-						var data = ` Nombre: ${name} \| ${type} \| Teléfono: ${number}`;
+						var data = ` Nombre: ${name} \| Teléfono: ${number} \| ${type}`;
 					}
 					else{
-						var data = ` Nombre: ${name} \| ${type} \| Teléfono: ${number} \| Domicilio: ${address}`;
+						var data = ` Nombre: ${name} \| Teléfono: ${number} \| ${type} en domicilio: ${address}`;
 					}
 					localStorage.setItem('Message', data);
 				}
@@ -456,11 +556,16 @@
 			
 			<div id="Pedido">
 			<h3 id="Menutxt">Menú</h3>
-			<!-- <br><br> -->
+
 			<hr>
 				<div id="foodall">
+				
+				
 				<div id="food1">
-					<img id="Nachos1" src="img/Nachosconcarnitas.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Tacos de pollo ($350 c/u)</p>
+					<img id="Nachos1" src="img/comida1.jpg" alt="ChiliTacosRosario">
+					<p id="ComidaTxt">A- Menu de Tacos para 1 <br><br><strong>$700</strong></p>
+					<h4>3 tortillas de harina integral, Pote de Carne o Pollo, Arroz o Frijoles + 2 salsas + Bolsa de nachos. </h4>
+					
 					<input type="checkbox" onclick="ShowC1()" name="Nachos1">
 					<br><br>
 					<p id="cant1" style="display:none;">Cantidad</p>
@@ -474,12 +579,15 @@
 					  <option value="7">7</option>
 					  <option value="8">8</option>
 					</select>
-					<!-- <hr> -->
+
 					</div>
-				<!-- <br><br><br><br> -->
+
 				
 				<div id="food2">
-					<img id="algo" src="img/algo.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Tacos de carne ($450 c/u)</p>
+					<img id="algo" src="img/comida2.jpg" alt="ChiliTacosRosario">
+					<p id="ComidaTxt">A- Menu de Tacos para 2 <br><br><strong>$1250</strong></p>
+					<h4>6 Tortillas de harina integral, Bandeja de carnitas de res y de pollo, bandeja de arroz blancos y frijoles negros y 3 salsas a elección. </h4>
+					
 					<input type="checkbox" onclick="ShowC2()" name="Nachos2">
 					<br><br>
 					<p id="cant2" style="display:none;">Cantidad</p>
@@ -493,12 +601,15 @@
 					  <option value="7">7</option>
 					  <option value="8">8</option>
 					</select>
-					<!-- <hr> -->
+
 					</div>
-				<!-- <br><br><br><br> -->
+
 				
 				<div id="food3">
-					<img id="algo2" src="img/algo2.png" alt="ChiliTacosRosario"><p id="ComidaTxt">Nachos con salsa ($150 c/u)</p>
+					<img id="algo2" src="img/comida3.jpg" alt="ChiliTacosRosario">
+					<p id="ComidaTxt">A- Menu de Tacos para 3 <br><br><strong>$1870</strong></p>
+					<h4>9 Tortillas de harina integral, Bandeja XL de carnitas de res y de pollo, bandeja XL de arroz blancos y frijoles negros y 5 salsas a elección + Bolsa de Nachos. </h4>
+					
 					<input type="checkbox" onclick="ShowC3()" name="Nachos3">
 					<br><br>
 					<p id="cant3" style="display:none;">Cantidad</p>
@@ -512,9 +623,150 @@
 					  <option value="7">7</option>
 					  <option value="8">8</option>
 					</select>
-					<!-- <hr> -->
+
 					</div>
+					
+					
+					<!-- 2 -->
+					
+					
+					<div id="food4">
+					<img id="Nachos1" src="img/comida4.jpg" alt="ChiliTacosRosario">
+					<p id="ComidaTxt">A- Menu de Tacos para 4 <br><br><strong>$2500</strong></p>
+					<h4>12 Tortillas de harina integral, Bandeja de carnitas de res y de pollo, bandeja de arroz blancos y frijoles negros y 7 salsas a elección + pote de carne o pollo + bolsa de nachos. </h4>
+					
+					<input type="checkbox" onclick="ShowC4()" name="Nachos1">
+					<br><br>
+					<p id="cant4" style="display:none;">Cantidad</p>
+					<select id="cantidad4" style="display:none;" required="required">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					</select>
+
 					</div>
+
+				
+				<div id="food5">
+					<img id="algo" src="img/comida5.jpg" alt="ChiliTacosRosario">
+					<p id="ComidaTxt">B- Menu Nachos <br><br><strong>$430</strong></p>
+					<h4>Bolsa de Nachos con dos salsas	. </h4>
+					
+					<input type="checkbox" onclick="ShowC5()" name="Nachos2">
+					<br><br>
+					<p id="cant5" style="display:none;">Cantidad</p>
+					<select id="cantidad5" style="display:none;" required="required">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					</select>
+
+					</div>
+
+				
+				<div id="food6">
+					<img id="algo2" src="img/comida6.jpg" alt="ChiliTacosRosario">
+					<p id="ComidaTxt">B- Menu Nachos con Carnitas <br><br><strong>$550</strong></p>
+					<h4>9 Tortillas de harina integral, Bandeja XL de carnitas de res y de pollo, bandeja XL de arroz blancos y frijoles negros y 5 salsas a elección + Bolsa de Nachos. </h4>
+					
+					<input type="checkbox" onclick="ShowC6()" name="Nachos3">
+					<br><br>
+					<p id="cant6" style="display:none;">Cantidad</p>
+					<select id="cantidad6" style="display:none;" required="required">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					</select>
+
+					</div>
+					
+					
+					<!-- 3 -->
+				
+				
+				
+				<div id="food7">
+					<img id="Nachos1" src="img/comida7.jpg" alt="ChiliTacosRosario">
+					<p id="ComidaTxt">C- Menú de Tacos Para 2 Vegetariano o Vegano <br><br><strong>$1250</strong></p>
+					<h4>Bandeja de vegetales, bandeja de arroz y frijoles, 3 salsas a elección, 6 tortillas y 1 bolsa de nachos. </h4>
+					
+					<input type="checkbox" onclick="ShowC7()" name="Nachos1">
+					<br><br>
+					<p id="cant7" style="display:none;">Cantidad</p>
+					<select id="cantidad7" style="display:none;" required="required">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					</select>
+
+					</div>
+
+				
+				<div id="food8">
+					<img id="algo" src="img/comida8.jpg" alt="ChiliTacosRosario">
+					<p id="ComidaTxt">G- Bandeja de Carne y Pollo 500g <br><br><strong>$600</strong></p>
+					<h4>Carne y Pollo, Cebolla, Pimiento Rojo, Verdeo y Barbacoa. </h4>
+					
+					<input type="checkbox" onclick="ShowC8()" name="Nachos2">
+					<br><br>
+					<p id="cant8" style="display:none;">Cantidad</p>
+					<select id="cantidad8" style="display:none;" required="required">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					</select>
+
+					</div>
+
+				
+				<div id="food9">
+					<img id="algo2" src="img/comida9.jpg" alt="ChiliTacosRosario">
+					<p id="ComidaTxt">G- Bandeja de Vegetales 420g <br><br><strong>$450</strong></p>
+					<h4>Bandeja de Vegetales salteados 420g. </h4>
+					
+					<input type="checkbox" onclick="ShowC9()" name="Nachos3">
+					<br><br>
+					<p id="cant9" style="display:none;">Cantidad</p>
+					<select id="cantidad9" style="display:none;" required="required">
+					  <option value="1">1</option>
+					  <option value="2">2</option>
+					  <option value="3">3</option>
+					  <option value="4">4</option>
+					  <option value="5">5</option>
+					  <option value="6">6</option>
+					  <option value="7">7</option>
+					  <option value="8">8</option>
+					</select>
+
+					</div>
+				
+				
+				</div>
 				<button onclick="fade1()" id="enter2">Continuar</button>
 				<script> <!-- mostrar boton cantidad -->
 					var count = 0;
@@ -593,6 +845,161 @@
 						}
 					}
 					
+					function ShowC4(){
+						let list = document.getElementById("cantidad4");
+						let button = document.getElementById("enter2");
+						
+						let txt = document.getElementById("cant4");
+						
+						if(list.style.display === 'none')
+						{
+							list.style.display = 'block';
+							button.style.display = 'initial';
+							txt.style.display = 'initial';
+							count++;
+						}
+						else
+						{
+							list.style.display = 'none';
+							count -= 1;
+							if(count === 0)
+							{
+								button.style.display = 'none';
+								txt.style.display = 'none';
+							}
+						}
+					}
+					
+					function ShowC5(){
+						let list = document.getElementById("cantidad5");
+						let button = document.getElementById("enter2");
+						
+						let txt = document.getElementById("cant5");
+						
+						if(list.style.display === 'none')
+						{
+							list.style.display = 'block';
+							button.style.display = 'initial';
+							txt.style.display = 'initial';
+							count++;
+						}
+						else
+						{
+							list.style.display = 'none';
+							count -= 1;
+							if(count === 0)
+							{
+								button.style.display = 'none';
+								txt.style.display = 'none';
+							}
+						}
+					}
+					
+					function ShowC6(){
+						let list = document.getElementById("cantidad6");
+						let button = document.getElementById("enter2");
+						
+						let txt = document.getElementById("cant6");
+						
+						if(list.style.display === 'none')
+						{
+							list.style.display = 'block';
+							button.style.display = 'initial';
+							txt.style.display = 'initial';
+							count++;
+						}
+						else
+						{
+							list.style.display = 'none';
+							count -= 1;
+							if(count === 0)
+							{
+								button.style.display = 'none';
+								txt.style.display = 'none';
+							}
+						}
+					}
+					
+					function ShowC7(){
+						let list = document.getElementById("cantidad7");
+						let button = document.getElementById("enter2");
+						
+						let txt = document.getElementById("cant7");
+						
+						if(list.style.display === 'none')
+						{
+							list.style.display = 'block';
+							button.style.display = 'initial';
+							txt.style.display = 'initial';
+							count++;
+						}
+						else
+						{
+							list.style.display = 'none';
+							count -= 1;
+							if(count === 0)
+							{
+								button.style.display = 'none';
+								txt.style.display = 'none';
+							}
+						}
+					}
+					
+					function ShowC8(){
+						let list = document.getElementById("cantidad8");
+						let button = document.getElementById("enter2");
+						
+						let txt = document.getElementById("cant8");
+						
+						if(list.style.display === 'none')
+						{
+							list.style.display = 'block';
+							button.style.display = 'initial';
+							txt.style.display = 'initial';
+							count++;
+						}
+						else
+						{
+							list.style.display = 'none';
+							count -= 1;
+							if(count === 0)
+							{
+								button.style.display = 'none';
+								txt.style.display = 'none';
+							}
+						}
+					}
+					
+					function ShowC9(){
+						let list = document.getElementById("cantidad9");
+						let button = document.getElementById("enter2");
+						
+						let txt = document.getElementById("cant9");
+						
+						if(list.style.display === 'none')
+						{
+							list.style.display = 'block';
+							button.style.display = 'initial';
+							txt.style.display = 'initial';
+							count++;
+						}
+						else
+						{
+							list.style.display = 'none';
+							count -= 1;
+							if(count === 0)
+							{
+								button.style.display = 'none';
+								txt.style.display = 'none';
+							}
+						}
+					}
+					
+					
+					
+					
+					
+					
 					function refresh(){
 						location.reload();
 						document.body.scrollTop = 0; // For Safari
@@ -622,11 +1029,13 @@
 			<br>	
 			<h3>Nombre: </h3><p id="username"></p>
 			<h3>Teléfono: </h3><p id="number"></p>
+			<br>
 			<h3 id="showdeli" style="display:none;">Domicilio: </h3><p id="direccion"></p>
 			<h3>Tipo de encargo: </h3><p id="deliver"></p>
 			<h3>Pedido: </h3><p id="food"></p>
 			<br>
-			<h3>Total: </h3><p id="price"></p>
+			<h3>Total: </h3>
+			<p id="price"></p>
 			<br><br>
 			<button onclick="fade4()" id="confirmbtn">Confirmar pedido</button>
 			<br><br>
