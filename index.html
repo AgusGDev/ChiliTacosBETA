@@ -133,7 +133,7 @@
 				if(sb.selectedIndex === 1)
 				{
 					document.getElementById("direccion").innerHTML = localStorage.getItem("Address");
-					delitxt.style.display = 'initial';
+					delitxt.style.display = 'block';
 				}
 				document.getElementById("deliver").innerHTML = localStorage.getItem("Type");
 				document.getElementById("food").innerHTML = localStorage.getItem("FoodShow");
@@ -214,9 +214,9 @@
 			
 			}
 			
-			function savedomi(v){
+			function savedomi(){
+				var v = document.getElementById("address").value;
 				localStorage.setItem("Address", v);
-			
 			}
 			
 			function savetype(val){
@@ -510,7 +510,9 @@
 				{
 					<!-- Delivery -->
 					savetype('Delivery');
+					savedomi();
 					fade2();
+					
 				}
 				if(sb.selectedIndex === 2)
 				{
