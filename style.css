@@ -649,7 +649,7 @@ input[type=text], input[type=tel] {
   display: inline-block;
   border: none;
   background: #f1f1f1;
-  font-size:1vw;
+  font-size:2vw;
 }
 
 input[type=text]:focus, input[type=tel]:focus {
@@ -1495,7 +1495,7 @@ input[type=text], input[type=tel] {
   display: inline-block;
   border: none;
   background: #f1f1f1;
-  font-size:4vw;
+  font-size:5vw;
 }
 
 input[type=text]:focus, input[type=tel]:focus {
