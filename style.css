@@ -656,7 +656,7 @@ input[type=text]:focus, input[type=tel]:focus {
   background-color: #ddd;
   outline: none;
   font-family: 'Roboto Condensed', sans-serif;
-  font-size:1vw;
+  font-size:2vw;
 }
 
 hr {
@@ -1502,7 +1502,7 @@ input[type=text]:focus, input[type=tel]:focus {
   background-color: #ddd;
   outline: none;
   font-family: 'Roboto Condensed', sans-serif;
-  font-size:4vw;
+  font-size:5vw;
 }
 
 hr {
