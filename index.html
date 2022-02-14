@@ -15,6 +15,12 @@
 		
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js" integrity="sha512-Qlv6VSKh1gDKGoJbnyA5RMXYcvnpIqhO++MhIM2fStMcGT9i2T//tSwYFlcyoRRDcDZ+TYHpH8azBBCyhpSeqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 		
+		<!-- FUENTE -->
+		
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+		
 		<!-- intro -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.1/TweenMax.min.js"></script>
 		
@@ -252,7 +258,7 @@
 				if(txt1.style.display === "initial")
 				{
 					var foodonecant = cant1;
-					var part1 = `\| A- Menu de Tacos para 1 X${foodonecant} \|`;
+					var part1 = `\| A- Menu de Tacos para 1 (${foodonecant}) \|`;
 					var price1 = 700 * foodonecant;
 					total += price1;
 				}
@@ -265,7 +271,7 @@
 				if(txt2.style.display === "initial")
 				{
 					var foodtwocant = cant2;
-					var part2 = `\| A- Menu de Tacos para 2 X${foodtwocant} \|`;
+					var part2 = `\| A- Menu de Tacos para 2 (${foodtwocant}) \|`;
 					var price2 = 1250 * foodtwocant;
 					total += price2;
 				}
@@ -278,7 +284,7 @@
 				if(txt3.style.display === "initial")
 				{
 					var foodthreecant = cant3;
-					var part3 = `\| A- Menu de Tacos para 3 X${foodthreecant} \|`;
+					var part3 = `\| A- Menu de Tacos para 3 (${foodthreecant}) \|`;
 					var price3 = 1870 * foodthreecant;
 					total += price3;
 				}
@@ -293,7 +299,7 @@
 				if(txt4.style.display === "initial")
 				{
 					var food4cant = cant4;
-					var part4 = `\| A- Menu de Tacos para 4 X${food4cant} \|`;
+					var part4 = `\| A- Menu de Tacos para 4 (${food4cant}) \|`;
 					var price4 = 2500 * food4cant;
 					total += price1;
 				}
@@ -306,7 +312,7 @@
 				if(txt5.style.display === "initial")
 				{
 					var food5cant = cant6;
-					var part5 = `\| B- Menu Nachos X${food5cant} \|`;
+					var part5 = `\| B- Menu Nachos (${food5cant}) \|`;
 					var price5 = 430 * food5cant;
 					total += price5;
 				}
@@ -319,7 +325,7 @@
 				if(txt6.style.display === "initial")
 				{
 					var food6cant = cant6;
-					var part6 = `\| B- Menu Nachos con Carnitas X${food6cant} \|`;
+					var part6 = `\| B- Menu Nachos con Carnitas (${food6cant}) \|`;
 					var price6 = 550 * food6cant;
 					total += price6;
 				}
@@ -332,7 +338,7 @@
 				if(txt7.style.display === "initial")
 				{
 					var food7cant = cant7;
-					var part7 = `\| C- Menú de Tacos Para 2 Vegetariano o Vegano X${food7cant} \|`;
+					var part7 = `\| C- Menú de Tacos Para 2 Vegetariano o Vegano (${food7cant}) \|`;
 					var price7 = 1250 * food7cant;
 					total += price7;
 				}
@@ -345,7 +351,7 @@
 				if(txt8.style.display === "initial")
 				{
 					var food8cant = cant8;
-					var part8 = `\| G- Bandeja de Carne y Pollo 500g X${food8cant} \|`;
+					var part8 = `\| G- Bandeja de Carne y Pollo 500g (${food8cant}) \|`;
 					var price8 = 600 * food8cant;
 					total += price8;
 				}
@@ -357,7 +363,7 @@
 				if(txt9.style.display === "initial")
 				{
 					var food9cant = cant9;
-					var part9 = `\| G- Bandeja de Vegetales 420g X${food9cant} \|`;
+					var part9 = `\| G- Bandeja de Vegetales 420g (${food9cant}) \|`;
 					var price9 = 450 * food9cant;
 					total += price9;
 				}
@@ -426,11 +432,12 @@
 	<body>
 	
 	<div class="overlay">
-        <p class="screen" style="font-size:12vw;">ChiliTacosRosario</p>
+        <img id="logoimgintro" src="img/logo.png">
+		<p class="screen" style="font-size:10vw;">ChiliTacosRosario</p>
 			<div class="intro">
             <button class="myBtn" onclick="fadeOut()">PEDIR AHORA</button>
         </div>
-		<p class="screen2" style="font-size:5vw;">Cerrito 974, Rosario</p>
+		<p class="screen2" style="font-size:4vw;">Cerrito 974, Rosario</p>
     </div>
 		
 	<div id="all" style="display:none;">	
@@ -459,7 +466,8 @@
 
 
 		<div id="Main">
-			<p><h2 id="title"> ¡Bienvenido! </h2>
+			<img id="logoimg" src="img/logodos.jpg">
+			<h3>Rosario, Santa Fe, Argentina</h3><h2 id="title">La mejor adaptación de Comida Mexicana <br> en Pleno corazón de Rosario</h2>
 			<div id="Box" style="display:none;">
 				<br>
 				<br>
@@ -582,7 +590,6 @@
 					  <option value="7">7</option>
 					  <option value="8">8</option>
 					</select>
-
 					</div>
 
 				
@@ -776,7 +783,6 @@
 					function ShowC1(){
 						let list = document.getElementById("cantidad1");
 						let button = document.getElementById("enter2");
-						
 						let txt = document.getElementById("cant1");
 						
 						if(list.style.display === 'none')
